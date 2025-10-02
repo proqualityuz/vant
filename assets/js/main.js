@@ -12,53 +12,53 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
+  // function toggleScrolled() {
+  //   const selectBody = document.querySelector('body');
+  //   const selectHeader = document.querySelector('#header');
+  //   if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+  //   window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+  // }
 
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
+  // document.addEventListener('scroll', toggleScrolled);
+  // window.addEventListener('load', toggleScrolled);
 
   /**
    * Mobile nav toggle
    */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  // const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-  }
+  // function mobileNavToogle() {
+  //   document.querySelector('body').classList.toggle('mobile-nav-active');
+  //   mobileNavToggleBtn.classList.toggle('bi-list');
+  //   mobileNavToggleBtn.classList.toggle('bi-x');
+  // }
+  // if (mobileNavToggleBtn) {
+  //   mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  // }
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
+  // document.querySelectorAll('#navmenu a').forEach(navmenu => {
+  //   navmenu.addEventListener('click', () => {
+  //     if (document.querySelector('.mobile-nav-active')) {
+  //       mobileNavToogle();
+  //     }
+  //   });
 
-  });
+  // });
 
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
+  // document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+  //   navmenu.addEventListener('click', function(e) {
+  //     e.preventDefault();
+  //     this.parentNode.classList.toggle('active');
+  //     this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+  //     e.stopImmediatePropagation();
+  //   });
+  // });
 
   /**
    * Preloader
@@ -171,11 +171,11 @@
   /**
    * Frequently Asked Questions Toggle
    */
-  document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
-    faqItem.addEventListener('click', () => {
-      faqItem.parentNode.classList.toggle('faq-active');
-    });
-  });
+  // document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
+  //   faqItem.addEventListener('click', () => {
+  //     faqItem.parentNode.classList.toggle('faq-active');
+  //   });
+  // });
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
@@ -217,4 +217,21 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  let mobile_nav_btn = document.querySelector('.mobile-nav-toggle');
+  let mobile_nav_btn_close = document.querySelector('.close-mobile-menu');
+  let mobile_menu = document.querySelector('.mobile-menu');
+
+  mobile_nav_btn.onclick = () => {
+    mobile_menu.classList.add('mobile-menu-active');
+  };
+
+  mobile_nav_btn_close.onclick = () => {
+    mobile_menu.classList.remove('mobile-menu-active');
+  };
+
+  document.querySelectorAll('.mobile-menu a').forEach(elem => {
+    elem.onclick = () => {
+      mobile_menu.classList.remove('mobile-menu-active');
+    };
+  })
 })();
